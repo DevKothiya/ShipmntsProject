@@ -34,8 +34,8 @@ public class StoreService {
         Store currentStore=getStore(location);
         if(currentStore!=null){
             currentStore.setCurrency(updateStore.getCurrency());
-            currentStore.setPremium_items(updateStore.getPremium_items());
-            currentStore.setTax_percentage(updateStore.getTax_percentage());
+            currentStore.setPremiumItems(updateStore.getPremiumItems());
+            currentStore.setTaxPercentage(updateStore.getTaxPercentage());
             storeRepository.save(currentStore);
             return new StoreResponse(true, "Store Updated Successfully");
 

@@ -1,30 +1,34 @@
 package com.Shipmnts.Project.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "plans")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Plan {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String store_location;
+    @JsonProperty("store_location")
+    private String storeLocation;
 
-    private Date valid_from;
+    @JsonProperty("valid_from")
+    private LocalDate validFrom;
 
-    private Date valid_to;
-    @OneToMany()
-    @JoinColumn(name = "item_id")
+    @JsonProperty("valid_to")
+    private LocalDate validTo;
+
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     private List<Item> items;
 
 

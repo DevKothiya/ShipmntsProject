@@ -21,8 +21,8 @@ public class StoreController {
     }
     @PostMapping
     public ResponseEntity<StoreResponse> createStore(@RequestBody Store store){
-
-        return new ResponseEntity<StoreResponse>(storeService.saveStore(store), HttpStatus.CREATED);
+        StoreResponse storeResponse=storeService.saveStore(store);
+        return new ResponseEntity<StoreResponse>(storeResponse, storeResponse.isSuccess()?HttpStatus.OK:HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("{location}")

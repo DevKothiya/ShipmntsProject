@@ -1,14 +1,15 @@
 package com.Shipmnts.Project.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Entity
-@Table(name = "stores")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,13 +19,15 @@ public class Store {
     private Long id;
 
     @Column(unique = true)
-
+    @JsonProperty("store_location")
     private String storeLocation;
 
     private String currency;
+    @JsonProperty("tax_percentage")
+    private Double taxPercentage;
 
-    private Double tax_percentage;
-    private List<String> premium_items;
+    @JsonProperty("premium_items")
+    private HashSet<String> premiumItems;
 
 
 }
